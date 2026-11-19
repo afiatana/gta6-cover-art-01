@@ -1,0 +1,66 @@
+/* Sunset Cover Maker — dark editor chrome, the cover itself carries the colour. */
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("./fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Anton";
+  src: url("./fonts/Anton-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #17101f; color: #f4eef7; font: 15px/1.45 system-ui, sans-serif; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 24px; }
+.controls { display: flex; flex-direction: column; gap: 14px; width: 320px; flex: none; }
+.controls h1 {
+  margin: 0; font-family: "Bebas Neue", "Anton", sans-serif; font-size: 44px; line-height: 0.95;
+  letter-spacing: 1px; color: #ffb347;
+  text-shadow: 0 3px 0 #e5488f, 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+.tagline { margin: 0; color: #cdbfd6; }
+fieldset { margin: 0; padding: 12px; border: 1px solid #4a3558; border-radius: 10px; background: #221829; }
+legend { font-weight: 700; color: #ffb347; padding: 0 6px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; margin-bottom: 10px; }
+label:last-child { margin-bottom: 0; }
+label.check, label.file-label { flex-direction: row; align-items: center; gap: 8px; }
+.hint { margin: 0 0 10px; font-weight: 400; font-size: 13px; color: #b3a3c0; }
+input[type=text], select {
+  font: inherit; padding: 8px; border: 1px solid #6b5580; border-radius: 6px;
+  background: #17101f; color: #f4eef7;
+}
+input[type=range] { width: 100%; accent-color: #ff7a3d; }
+input[type=file] { font-weight: 400; max-width: 100%; }
+.value { font-weight: 400; color: #ffb347; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; }
+button { font: inherit; font-weight: 700; padding: 10px 12px; border: 0; border-radius: 8px; cursor: pointer; }
+button.chip { background: #3a2a4a; color: #ffd9ec; padding: 6px 10px; font-size: 13px; }
+button.chip:hover { background: #4d3760; }
+button.export {
+  background: linear-gradient(90deg, #ff7a3d, #e5488f, #7b5cff); color: #fff;
+  font-size: 17px; padding: 13px; box-shadow: 0 4px 18px rgba(229, 72, 143, 0.45);
+}
+button.export:hover { filter: brightness(1.1); }
+#status { margin: 0; min-height: 1.4em; color: #9fe8c0; font-size: 14px; }
+.preview { display: flex; flex-direction: column; gap: 10px; align-items: center; position: sticky; top: 24px; }
+.preview canvas {
+  width: min(66vh, 58vw); height: auto; max-height: 82vh;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.55); border-radius: 4px; cursor: pointer; background: #2b1838;
+}
+.preview-note { margin: 0; font-size: 13px; color: #b3a3c0; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; align-items: center; }
+  .controls { width: min(100%, 480px); }
+  .preview { position: static; }
+  .preview canvas { width: min(100%, 70vh); }
+}
+/* Screenshot mode: the cover alone fills the frame. */
+body.shot-cover .controls, body.shot-cover .preview-note { display: none; }
+body.shot-cover .app { padding: 0; display: block; }
+body.shot-cover .preview { position: static; }
+body.shot-cover .preview canvas { width: 100vw; height: 100vh; max-height: none; box-shadow: none; border-radius: 0; object-fit: contain; background: #14091f; }
